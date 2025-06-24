@@ -1,0 +1,31 @@
+<% include ./partials/header.ejs %>
+  <div class="w-full min-h-screen bg-zinc-800 px-10 py-5 text-white flex flex-col items-center ">
+
+     
+
+     <h1 class="text-xl">Create new post</h1>
+     <hr class="opacity-10 mt-3">
+     <button id="button" class="  w-100px px-14 py-2 rounded-md mt-2 border-2 text-black bg-white shadow">Choose Photo</button>
+
+     <form id="uploadpost" action="/createpost" method="post" enctype="multipart/form-data" class="flex flex-col items-center">
+         <input type="file" name="postimage" class="hidden" > 
+
+         <input class="block w-100px px-3 py-2 rounded-md mt-2 border-2 text-black" type="text" placeholder="Title" name="title">
+
+         <input class="block w-90px px-3 py-2 rounded-md mt-2 bg-red-700" type="submit" value="Create Post">
+     </form>
+  </div>
+
+  <script>
+      document.querySelector("#button").addEventListener("click",function(){
+        document.querySelector("#uploadpost input").click();
+      })
+
+      const button=document.getElementById("button");
+        button.addEventListener("click",function handleClick(){
+          button.textContent="Image selected"; 
+           button.removeEventListener("click",handleClick);
+       })
+</script>
+  
+<% include ./partials/footer.ejs %>
