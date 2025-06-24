@@ -1,5 +1,7 @@
 var createError = require('http-errors');
+require('dotenv').config();  //load .env
 var express = require('express');
+const mongoose = require('mongoose');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -12,6 +14,18 @@ const passport = require('passport');
 
 var app = express();
 
+//access env variables
+const PORT = process.env.PORT || 5000;
+const MONGO_URI = process.env.MONGO_URI;
+
+//MongoDB connection
+mongoose.connect(MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log("DB connection error:", err));
+
+app.listen(PORT, () => {
+   console.log('server running on port ${PORT}'); 
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
