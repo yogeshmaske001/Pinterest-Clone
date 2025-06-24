@@ -1,6 +1,6 @@
 var createError = require('http-errors');
 require('dotenv').config();  //load .env
-var express = require('express');
+const express = require('express');
 const mongoose = require('mongoose');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -12,7 +12,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const passport = require('passport');
 
-var app = express();
+const app = express();
 
 //access env variables
 const PORT = process.env.PORT || 3000;
@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true, useUnifiedTopology
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log("DB connection error:", err));
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
    console.log('server running on port ${PORT}'); 
 });
 // view engine setup
